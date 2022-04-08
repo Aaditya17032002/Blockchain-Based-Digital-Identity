@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>  
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <img src="/blocks/blockchain.png" alt="" width="100" height="100"> 
+            <span class="ml-0 text-xl">Nonces</span>
+          </a>
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a href="index.html" class="mr-5 hover:text-gray-900">Home</a>
+            <a href="register.html" class="mr-5 hover:text-gray-900" >Register</a>  
+            <a href = "login.html" class="mr-5 hover:text-gray-900">Login </a>  
+          </nav>  
+            <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" formaction ="qrcode.svg">Download
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+   
+    <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+		<div class="max-w-md w-full space-y-8">
+			<form class="mt-8 space-y-6" action="{{url_for('index')}}" method="POST">
+				<input type="hidden" name="remember" value="True">
+				<div class="rounded-md shadow-sm -space-y-px flex-col ml-10">
+                    <div class="flex-col p-10">
+                        <div class="flex-row p-2 align-items-center">
+    					  <label for="adhar_number">AdharCard Number</label>					
+                        </div>
+						<input id="adhar_number" name="adhar_number" type="text"  placeholder="Enter Your Adhar Number">
+                    </div>
+					<div class="flex-col p-10">
+                        <div class="flex-row p-2 align-items-center">
+						    <label for="pan_number">PanCard Number</label>
+                        </div>
+						<input id="pan_number" name="pan_number" type="text"  placeholder="Enter Your Pan Number">
+					</div>
+                    <div class="flex-col p-10">
+                        <div class="flex-row p-2 align-items-center">
+						    <label for="driving_license">Driving license</label>
+                        </div>
+						<input id="driving_license" name="driving_license" type="text"  placeholder="Enter Your Driving License">
+					</div>
+                    <div class="flex-col p-10">
+                        <div class="flex-row p-2 align-items-center">
+						    <label for="driving_license">Email</label>
+                        </div>
+						<input id="Email" name="Email" type="Email"  placeholder="Enter Your Email">
+					</div>
+				</div>
+                
+				<div>
+					<button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+						<span class="absolute left-0 inset-y-0 flex items-center pl-3">
+							<!-- Heroicon name: solid/lock-closed -->
+							<svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="True">
+								<path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+							</svg>
+						</span>
+						Upload
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+  <div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto mt-5 text-center">
+
+            <form action="{{ url_for('check')}}">
+                <button class="btn btn-outline-info">check</button>
+            </form>
+
+            {% for res in checking_results %}
+
+                <div>
+                  Block {{ res['block']}} : {{ res['result']}}
+                </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+     
+</body>
+</html>
